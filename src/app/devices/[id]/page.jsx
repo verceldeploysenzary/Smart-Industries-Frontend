@@ -1,6 +1,7 @@
 "use client";
 import { LineChartAux } from "@/components/LineChartAux";
 import { LineCharts } from "@/components/LineCharts";
+import SplineComponent from "@/components/SplineComponent";
 import TimeInputs from "@/components/TimeInputs";
 import TimeseriesCard from "@/components/TimeseriesCard";
 import { fetchDeviceAtributes } from "@/redux/FetchDeviceAtributes";
@@ -217,12 +218,12 @@ const Component = ({ params }) => {
           {showTimeInputs ? "HIDE TIME INPUTS" : "SHOW TIME INPUTS"}
         </button>
         <button
-        onClick={() => setIsLineChartsVisible(!isLineChartsVisible)}
-        className="bg-gray-200 hover:bg-gray-300 text-black rounded font-semibold px-4 py-2 w-1/6 mx-8 my-8"
-      >
-        {isLineChartsVisible ? "HIDE LINE CHARTS" : "SHOW LINE CHARTS"}
-      </button>
-      <div className="flex flex-row gap-4 justify-center mx-auto">
+          onClick={() => setIsLineChartsVisible(!isLineChartsVisible)}
+          className="bg-gray-200 hover:bg-gray-300 text-black rounded font-semibold px-4 py-2 w-1/6 mx-8 my-8"
+        >
+          {isLineChartsVisible ? "HIDE LINE CHARTS" : "SHOW LINE CHARTS"}
+        </button>
+        <div className="flex flex-row gap-4 justify-center mx-auto">
           <button
             className={`${isConnected ? "bg-green-200" : "bg-gray-200"} hover:${
               isConnected ? "bg-green-300" : "bg-gray-300"
@@ -243,15 +244,15 @@ const Component = ({ params }) => {
       </div>
       {showTimeInputs && <TimeInputs />}
 
-      {isLineChartsVisible && lineStats && lineStats?.timestamps?.length > 0 && (
-        <div className="grid grid-cols-2 gap-3 justify-content-center mx-auto mb-20">
-          {renderLineCharts()}
-        </div>
-      )}
+      {isLineChartsVisible &&
+        lineStats &&
+        lineStats?.timestamps?.length > 0 && (
+          <div className="grid grid-cols-2 gap-3 justify-content-center mx-auto mb-20">
+            {renderLineCharts()}
+          </div>
+        )}
 
-      <div>
-        
-      </div>
+      <div></div>
       <h1 className="text-2xl font-bold text-center text-gray-900">
         {deviceData.data && deviceData.data[0] && deviceData.data[0].name
           ? `Device Name: ${deviceData.data[0].name}`
@@ -315,7 +316,12 @@ const Component = ({ params }) => {
             </h1>
           </div>
         ))}
-    </div>
+
+<div>
+      {firstObjects?.temperature && firstObjects.temperature[0]?.value && (
+        <SplineComponent temperature={firstObjects.temperature[0].value} />
+      )}
+    </div>    </div>
   );
 };
 

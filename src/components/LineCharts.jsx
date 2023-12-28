@@ -70,7 +70,7 @@ export function LineCharts({ datas, property, firstObjects }) {
         tension: 0.5,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
-        pointRadius: 2,
+        pointRadius: 5,
         pointBorderColor: "rgba(255, 99, 132)",
         pointBackgroundColor: "rgba(255, 99, 132)",
       },
