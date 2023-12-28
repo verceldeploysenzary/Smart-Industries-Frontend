@@ -39,9 +39,6 @@ export function LineCharts({ datas, property, firstObjects }) {
     })
   );
   
-  const ver =()=>{
-    console.log(showState[showState.length - 1]);
-  }
 
   useEffect(() => {
     const newTs = newData.ts;
@@ -102,8 +99,6 @@ export function LineCharts({ datas, property, firstObjects }) {
   return (
     <div className="flex w-fit">
       <Line options={options} data={data} />
-      <button onClick={()=>ver()}>VER</button>
-
     </div>
   );
 }
