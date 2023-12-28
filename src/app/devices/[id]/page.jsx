@@ -36,7 +36,6 @@ const Component = ({ params }) => {
   const [firstObjects, setFirstObjects] = useState(null);
 
   useEffect(() => {
-    // Update firstObjects when unArrengedata changes
     if (unArrengedata) {
       const newFirstObjects = {};
       Object.keys(unArrengedata).forEach((property) => {

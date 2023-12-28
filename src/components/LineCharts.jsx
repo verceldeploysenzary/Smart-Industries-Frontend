@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -24,13 +24,13 @@ ChartJS.register(
 export function LineCharts({ datas, property, firstObjects }) {
   const tsArray = datas.map((item) => item.ts);
   const values = datas.map((item) => item.value);
-  const maxDataLength = 10;
-
-  // Historical data as refs
+  const maxDataLength = 15;
   const historicalTsArrayRef = useRef(tsArray.slice(0, maxDataLength).reverse());
   const historicalValuesRef = useRef(values.slice(0, maxDataLength).reverse());
 
   const newData = firstObjects[property][0] || [];
+  const [showState, setShowState] = useState(historicalValuesRef.current);
+
 
   const timeArray = historicalTsArrayRef.current.map((timestamp) =>
     new Date(timestamp).toLocaleTimeString([], {
@@ -38,6 +38,28 @@ export function LineCharts({ datas, property, firstObjects }) {
       second: "2-digit",
     })
   );
+  
+  const ver =()=>{
+    console.log(showState[showState.length - 1]);
+  }
+
+  useEffect(() => {
+    const newTs = newData.ts;
+    const newValue = newData.value;
+
+    // Update historical data using push and unshift
+    historicalTsArrayRef.current.push(newTs);
+    historicalValuesRef.current.push(newValue);
+
+    if (historicalTsArrayRef.current.length > maxDataLength) {
+      historicalTsArrayRef.current.shift();
+      historicalValuesRef.current.shift();
+    }
+
+    // Update showState
+    setShowState([...historicalValuesRef.current]);
+  }, [newData]);
+
 
   const data = {
     labels: timeArray,
@@ -75,25 +97,13 @@ export function LineCharts({ datas, property, firstObjects }) {
     },
   };
 
-  useEffect(() => {
-    const newTs = newData.ts;
-    const newValue = newData.value;
-
-    // Update historical data using push and unshift
-    historicalTsArrayRef.current.push(newTs);
-    historicalValuesRef.current.push(newValue);
-
-    if (historicalTsArrayRef.current.length > maxDataLength) {
-      historicalTsArrayRef.current.unshift();
-      historicalValuesRef.current.unshift();
-    }
-  }, [newData]);
-
 
 
   return (
     <div className="flex w-fit">
       <Line options={options} data={data} />
+      <button onClick={()=>ver()}>VER</button>
+
     </div>
   );
 }
