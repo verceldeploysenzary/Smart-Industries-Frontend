@@ -36,6 +36,11 @@ const Component = ({ params }) => {
   const [unArrengeData, setUnArrengeData] = useState(null);
   const [firstObjects, setFirstObjects] = useState(null);
 
+  const [isSplineVisible, setIsSplineVisible] = useState(false);
+  const toggleSplineVisibility = () => {
+    setIsSplineVisible(!isSplineVisible);
+  };
+
   useEffect(() => {
     if (unArrengedata) {
       const newFirstObjects = {};
@@ -240,10 +245,15 @@ const Component = ({ params }) => {
           >
             DISCONNECT SOCKET
           </button>
+          <button
+            className="bg-gray-200 hover:bg-gray-300 text-black rounded font-semibold px-4 py-2 mx-8 my-8"
+            onClick={toggleSplineVisibility}
+          >
+            {isSplineVisible ? "Hide Spline" : "Show Spline"}
+          </button>
         </div>
       </div>
       {showTimeInputs && <TimeInputs />}
-
       {isLineChartsVisible &&
         lineStats &&
         lineStats?.timestamps?.length > 0 && (
@@ -251,14 +261,12 @@ const Component = ({ params }) => {
             {renderLineCharts()}
           </div>
         )}
-
       <div></div>
       <h1 className="text-2xl font-bold text-center text-gray-900">
         {deviceData.data && deviceData.data[0] && deviceData.data[0].name
           ? `Device Name: ${deviceData.data[0].name}`
           : "No Device Name Available"}
       </h1>
-
       <div className="flex flex-row gap-4 justify-center mx-auto">
         <button
           className={`${
@@ -306,7 +314,6 @@ const Component = ({ params }) => {
           ))}
         </>
       )}
-
       {status === "failed" ||
         (propertiesWithValues.length === 0 && (
           <div className="border rounded-lg shadow-md p-8 bg-white max-w-7xl mx-auto w-75">
@@ -316,12 +323,18 @@ const Component = ({ params }) => {
             </h1>
           </div>
         ))}
-
-<div>
-      {firstObjects?.temperature && firstObjects.temperature[0]?.value && (
-        <SplineComponent temperature={firstObjects.temperature[0].value} />
-      )}
-    </div>    </div>
+      <div>
+        {isSplineVisible &&
+          firstObjects?.temperature &&
+          firstObjects.temperature[0]?.value && (
+            <div className="w-3/4 mx-auto">
+              <SplineComponent
+                temperature={firstObjects.temperature[0].value}
+              />
+            </div>
+          )}
+      </div>{" "}
+    </div>
   );
 };
 

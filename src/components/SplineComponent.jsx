@@ -4,6 +4,8 @@ import { useRef, useEffect } from "react";
 
 export default function SplineComponent({ temperature }) {
   const cube = useRef();
+  const text = useRef();
+  const splVar = useRef();
 
   useEffect(() => {
     if (cube.current) {
@@ -13,12 +15,17 @@ export default function SplineComponent({ temperature }) {
 
   function onLoad(spline) {
     const obj = spline.findObjectByName("Rectangle2");
-    console.log(obj);
+    const txt = spline.findObjectByName("Text5");
     cube.current = obj;
+    text.current = txt
+    const splineVar = spline.findObjectByName("HCol");
+    splVar.current = splineVar
+    console.log(splVar.current);
+
   }
 
   const ver = () => {
-    console.log(cube.current);
+    console.log(splVar.current);
   };
 
   return (
