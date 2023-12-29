@@ -2,6 +2,7 @@
 import { LineChartAux } from "@/components/LineChartAux";
 import { LineCharts } from "@/components/LineCharts";
 import SplineComponent from "@/components/SplineComponent";
+import SplineComponentVanilla from "@/components/SplineComponentVanilla";
 import TimeInputs from "@/components/TimeInputs";
 import TimeseriesCard from "@/components/TimeseriesCard";
 import { fetchDeviceAtributes } from "@/redux/FetchDeviceAtributes";
@@ -93,10 +94,12 @@ const Component = ({ params }) => {
   };
 
   const backToDevices = () => {
-    setIsConnected(false);
-    setConnectButtonColor("gray");
-    setCloseConection(true);
-    disconnectWebSocket();
+    if (isConnected) {
+      setIsConnected(false);
+      setConnectButtonColor("gray");
+      setCloseConection(true);
+      disconnectWebSocket();
+    }
     window.location.href = "/devices";
   };
 
@@ -328,9 +331,11 @@ const Component = ({ params }) => {
           firstObjects?.temperature &&
           firstObjects.temperature[0]?.value && (
             <div className="w-3/4 mx-auto">
-              <SplineComponent
+{/*               <SplineComponent
                 temperature={firstObjects.temperature[0].value}
-              />
+              /> */}
+              {/* <SplineComponentVanilla temperature={firstObjects.temperature[0].value} /> */}
+              <SplineComponentVanilla firstObjects={firstObjects} />
             </div>
           )}
       </div>{" "}

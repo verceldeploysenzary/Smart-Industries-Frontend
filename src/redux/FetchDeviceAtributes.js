@@ -57,8 +57,6 @@ export const fetchDeviceAtributes = createAsyncThunk(
             });
           }
         }
-
-        console.log(secondResponse.data);
         let unArrageData = secondResponse.data
          return {arrageData, unArrageData};
       } catch (secondErr) {

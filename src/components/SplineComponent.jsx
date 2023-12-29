@@ -21,11 +21,10 @@ export default function SplineComponent({ temperature }) {
     const splineVar = spline.findObjectByName("HCol");
     splVar.current = splineVar
     console.log(splVar.current);
-
   }
 
   const ver = () => {
-    console.log(splVar.current);
+    console.log(text.current);
   };
 
   return (
