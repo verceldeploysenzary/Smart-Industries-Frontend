@@ -1,7 +1,6 @@
 "use client";
 import { LineChartAux } from "@/components/LineChartAux";
 import { LineCharts } from "@/components/LineCharts";
-import SplineComponent from "@/components/SplineComponent";
 import SplineComponentVanilla from "@/components/SplineComponentVanilla";
 import TimeInputs from "@/components/TimeInputs";
 import TimeseriesCard from "@/components/TimeseriesCard";
@@ -18,7 +17,6 @@ const Component = ({ params }) => {
     (state) => state.DeviceAtributesSlice.secondResponse
   );
   const data = useSelector((state) => state.DeviceAtributesSlice.arrageData);
-
   const status = useSelector((state) => state.DeviceAtributesSlice.status);
   const DateGenerateSlice = useSelector((state) => state.DateGenerateSlice);
   const startDateTimestamp = DateGenerateSlice.startDateTimestamp;
@@ -181,7 +179,6 @@ const Component = ({ params }) => {
 
   const renderLineCharts = () => {
     const charts = [];
-
     const numericProperties = Object.keys(unArrengedata).filter((property) =>
       unArrengedata[property].every((obj) => !isNaN(Number(obj.value)))
     );
@@ -210,8 +207,14 @@ const Component = ({ params }) => {
     connectSocket(id);
   };
 
+   const ver =()=>{
+    console.log(lineStats);
+   }
+
   return (
     <div className="text-black w-full flex flex-col ">
+
+      {/* TOP BUTTONS */}
       <div className="flex flex-row">
         <button
           onClick={() => backToDevices()}
@@ -256,10 +259,16 @@ const Component = ({ params }) => {
           </button>
         </div>
       </div>
+
+      {/* TIME INPUTS */}
       {showTimeInputs && <TimeInputs />}
+
+    {/* LINE CHARTS */}
+    <button onClick={()=>ver()}>VER LINE STATS</button>
+
       {isLineChartsVisible &&
         lineStats &&
-        lineStats?.timestamps?.length > 0 && (
+        (lineStats?.timestamps?.length > 0 || lineStats?.ts?.length > 0) && (
           <div className="grid grid-cols-2 gap-3 justify-content-center mx-auto mb-20">
             {renderLineCharts()}
           </div>
@@ -270,6 +279,9 @@ const Component = ({ params }) => {
           ? `Device Name: ${deviceData.data[0].name}`
           : "No Device Name Available"}
       </h1>
+
+
+
       <div className="flex flex-row gap-4 justify-center mx-auto">
         <button
           className={`${
@@ -293,6 +305,10 @@ const Component = ({ params }) => {
           Last Telemetries
         </button>
       </div>
+
+
+
+
       {/* REAL TIME PLATE */}
       {IdStateSlice === "realtime" && propertiesWithValues.length > 0 && (
         <div className="flex flex-col items-center">
@@ -331,10 +347,6 @@ const Component = ({ params }) => {
           firstObjects?.temperature &&
           firstObjects.temperature[0]?.value && (
             <div className="w-3/4 mx-auto">
-{/*               <SplineComponent
-                temperature={firstObjects.temperature[0].value}
-              /> */}
-              {/* <SplineComponentVanilla temperature={firstObjects.temperature[0].value} /> */}
               <SplineComponentVanilla firstObjects={firstObjects} />
             </div>
           )}

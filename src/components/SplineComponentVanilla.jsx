@@ -55,7 +55,7 @@ export default function SplineComponentVanilla({ firstObjects }) {
   }, []);
 
   const setVar = () => {
-    if (splineRef.current) {
+    if (Object.keys(firstobj).length > 0 && splineRef.current) {
       splineRef.current.setVariable("HCol2 ", firstobj * 10);
       splineRef.current.setVariable("H Col 3", secondobj * 10);
       splineRef.current.setVariable("HCol", firstobj * 10);

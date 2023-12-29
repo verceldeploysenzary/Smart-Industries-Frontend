@@ -6,34 +6,40 @@ export const LineChartAux = (data) => {
   let result = {};
 
   Object.keys(data).forEach((timestamp) => {
-    const temperatureArray = data[timestamp];
+    const eacheArray = data[timestamp];
 
-    if (Array.isArray(temperatureArray) && temperatureArray.length > 0) {
-      const temperatureValue = temperatureArray[0].temperature;
+    if (Array.isArray(eacheArray) && eacheArray.length > 0) {
+      const temperatureValue = eacheArray[0].temperature;
       if (temperatureValue) {
         result.timestamps = result.timestamps || [];
         result.timestamps.push(timestamp);
 
         result.temperature = result.temperature || [];
-        result.temperature.push(temperatureValue);
+        result.temperature.push(Number(temperatureValue)); 
       }
     }
 
-    if (Array.isArray(temperatureArray) && temperatureArray.length > 0) {
-      temperatureArray.forEach((item, index) => {
+    if (Array.isArray(eacheArray) && eacheArray.length > 0) {
+      eacheArray.forEach((item, index) => {
         Object.keys(item).forEach((property) => {
           if (!result[property]) {
             result[property] = [];
           }
-
           const propertyValue = item[property];
-          if (propertyValue !== undefined) {
-            result[property].push(propertyValue);
+          if (/^[0-9]+$/.test(propertyValue)) {
+            result[property].push(Number(propertyValue));
           }
         });
       });
     }
   });
+
+  Object.keys(result).forEach((property) => {
+    if (Array.isArray(result[property]) && result[property].length === 0) {
+      delete result[property];
+    }
+  });
+
   Object.keys(result).forEach((property) => {
     if (Array.isArray(result[property])) {
       result[property] = result[property].reverse();
@@ -42,5 +48,3 @@ export const LineChartAux = (data) => {
 
   return result;
 };
-
-
