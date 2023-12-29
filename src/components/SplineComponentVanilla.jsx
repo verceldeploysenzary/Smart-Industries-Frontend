@@ -23,13 +23,6 @@ export default function SplineComponentVanilla({ firstObjects }) {
     });
   }
 
-  useEffect(() => {
-    console.log("firstobj updated:", firstobj);
-  }, [firstobj]);
-
-  useEffect(() => {
-    console.log("secondobj updated:", secondobj);
-  }, [secondobj]);
 
   const [obj, setObj] = useState(null);
   const [col1, setCol1] = useState(null);
@@ -48,7 +41,7 @@ export default function SplineComponentVanilla({ firstObjects }) {
 
     spline
       .load("https://prod.spline.design/O2lvu7CVclukW2ag/scene.splinecode")
-      .then(() => {
+      /* .then(() => {
         const newObj = spline.findObjectByName("Rectangle2");
         setObj(newObj);
         const var1 = spline.getVariable("HCol2 ");
@@ -58,7 +51,7 @@ export default function SplineComponentVanilla({ firstObjects }) {
         setVars(variables);
         setVar1(var1);
         onLoad(spline);
-      });
+      }); */
   }, []);
 
   const setVar = () => {
@@ -68,16 +61,20 @@ export default function SplineComponentVanilla({ firstObjects }) {
       splineRef.current.setVariable("HCol", firstobj * 10);
       splineRef.current.setVariable("Col2Name", properties[0]);
       splineRef.current.setVariable("Col3Name", properties[1]);
+      splineRef.current.setVariable("Col3Value", secondobj + "HR");
+      splineRef.current.setVariable("Col2Value", firstobj + "°C");
     }
   };
+
+  
   useEffect(() => {
     setVar();
   }, [firstobj]);
 
   const ver = () => {
-    console.log("firstobj:", firstobj);
+/*     console.log("firstobj:", firstobj);
     console.log("secondobj:", secondobj);
-    console.log("properties:", properties);
+    console.log("properties:", properties); */
   };
 
   return (
