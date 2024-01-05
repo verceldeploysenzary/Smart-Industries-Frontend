@@ -1,4 +1,9 @@
 "use client";
+import EchartGauge from "@/components/Echarts/EchartGauge";
+import EchartGlobe from "@/components/Echarts/EchartGlobe";
+import EchartHeatMapMap from "@/components/Echarts/EchartHeatMapMap";
+import EchartsHeatMap from "@/components/Echarts/EchartsHeatMap";
+import EchartsStackAreaCharts from "@/components/Echarts/EchartsStackAreaCharts";
 import { LineChartAux } from "@/components/LineChartAux";
 import { LineCharts } from "@/components/LineCharts";
 import SplineComponentVanilla from "@/components/SplineComponentVanilla";
@@ -213,6 +218,16 @@ const Component = ({ params }) => {
 
   return (
     <div className="text-black w-full flex flex-col ">
+
+
+    {/* Echarts */}
+      {/* <EchartsHeatMap/> 
+      <EchartsStackAreaCharts />
+      <EchartGauge />
+    <EchartGlobe />
+<EchartHeatMapMap/> */}
+
+
 
       {/* TOP BUTTONS */}
       <div className="flex flex-row">
