@@ -6,7 +6,6 @@ const WidgetAdvantgrid = ({ NandinaAdvantGrid }) => {
     foundObject?.allData?.find((item) => item.id.id === NandinaAbeeway.id)
   ); */
 
-  const lastLatAndLong = []
 
   const ver = () => {
     console.log(NandinaAdvantGrid.unArrageData.LrrLAT[0].value);
@@ -14,8 +13,6 @@ const WidgetAdvantgrid = ({ NandinaAdvantGrid }) => {
   };
   return (
     <div>
-      <button onClick={() => ver()}>VER</button>
-
       <h1>WidgetAdvantgrid</h1>
        <CustomMap param1={NandinaAdvantGrid.unArrageData.LrrLAT[0].value} param2={NandinaAdvantGrid.unArrageData.LrrLON[0].value}/> 
     </div>

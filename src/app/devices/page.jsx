@@ -13,9 +13,9 @@ const Component = () => {
   const [data, setData] = useState(initialData);
   const [searchText, setSearchText] = useState("");
 
-  useEffect(() => {
+/*   useEffect(() => {
     dispatch(fetchallDevices());
-  }, [dispatch]);
+  }, [dispatch]); */
 
   useEffect(() => {
     setData(initialData);

@@ -18,13 +18,9 @@ const WidgetAbeeway = ({ NandinaAbeeway }) => {
     return acc;
   }, {});
 
-  const ver = () => {
-    console.log(lastTemperaturesProseced);
-  };
 
   return (
     <div className="text-black w-1/2">
-      <button onClick={() => ver()}>VER Abeeway</button>
     <EchartsStackLine lastTemperaturesProseced={lastTemperaturesProseced}/>
       {/* <CustomMap /> */}
     </div>

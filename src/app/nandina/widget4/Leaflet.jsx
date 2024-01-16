@@ -16,10 +16,9 @@ function CustomMap({ param1, param2 }) {
 
       <div>
         <MapContainer
-          className="map-container"
           center={center}
           zoom={18}
-          scrollWheelZoom={true}
+          scrollWheelZoom={false}
           style={{ width: "40%", height: "50vh" }}
         >
           <TileLayer

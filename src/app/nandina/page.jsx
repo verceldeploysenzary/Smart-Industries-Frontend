@@ -7,6 +7,7 @@ import Widget2 from "./widget2/Sensative-01B80C";
 import Abeeway from "./widget3/Abeeway";
 import WidgetAbeeway from "./widget3/Abeeway";
 import WidgetAdvantgrid from "./widget4/Advantgrid";
+import NavBar from "@/components/NavBar/NavBar";
 
 const Component = () => {
   const dispatch = useDispatch();
@@ -28,10 +29,7 @@ const Component = () => {
       (item) => item.id === GuardNandinaDoor
     );
     if (foundObjectGuardNandinaDoor) {
-      console.log(foundObjectGuardNandinaDoor);
       setGuardNandinaDoorObject(foundObjectGuardNandinaDoor);
-    } else {
-      console.log(`Object with id ${GuardNandinaDoor} not found.`);
     }
     //2
     const PresenceNandina = "20b3a900-06f6-11ed-8186-71e7353bf3bc";
@@ -39,29 +37,20 @@ const Component = () => {
       (item) => item.id === PresenceNandina
     );
     if (foundNandinaPresence) {
-      console.log(foundNandinaPresence);
       setNandinaPresence(foundNandinaPresence);
-    } else {
-      console.log(`Object with id ${PresenceNandina} not found.`);
-    }
+    } 
     //3
     const AbeewayNandina = "4c910140-9ff8-11ec-a34c-15612845b04e";
     const foundAbeeway = data.find((item) => item.id === AbeewayNandina);
     if (foundAbeeway) {
-      console.log(foundAbeeway);
       setNandinaAbeeway(foundAbeeway);
-    } else {
-      console.log(`Object with id ${AbeewayNandina} not found.`);
-    }
+    } 
     //4
     const AdvantGridNandina = "e237adb0-4b1c-11ec-a079-eb4a8edd9615";
     const foundAdvantGridy = data.find((item) => item.id === AdvantGridNandina);
     if (foundAdvantGridy) {
-      console.log(foundAdvantGridy);
       setNandinaAdvantGrid(foundAdvantGridy);
-    } else {
-      console.log(`Object with id ${AdvantGridNandina} not found.`);
-    }
+    } 
   };
 
   //aca termina LoadInfo
@@ -70,12 +59,9 @@ const Component = () => {
     LoadInfo();
   }, [data]);
 
-  const ver = () => {
-    console.log(data);
-  };
   return (
     <div className="text-black flex flex-col">
-
+      <NavBar/>
       <div className="flex justify-center items-center">
         <div className="text-black flex flex-col">
          {/* {data &&

@@ -10,17 +10,24 @@ import NandinaDeviceSlice from "./getNandinaDevices";
 import ManyDevicesSlice from "./fetchManyDevices";
 
 const store = configureStore({
-    reducer:{ 
-        AdminDashboardSlice: AdminDashboardSlice.reducer,
-        AllDevicesSlice: AllDevicesSlice.reducer,
-        AllDashboardSlice: AllDashboardSlice.reducer,
-        DeviceAtributesSlice: DeviceAtributesSlice.reducer,
-        DateGenerateSlice: DateGenerateSlice.reducer,
-        IdStateSlice: IdStateSlice.reducer,
-        OneDeviceSlice: OneDeviceSlice.reducer,
-        NandinaDeviceSlice: NandinaDeviceSlice.reducer,
-        ManyDevicesSlice: ManyDevicesSlice.reducer,
-    }
-})
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['your/action/type'], 
+        ignoredPaths: ['your/path/to/ignore'], 
+      },
+    }),
+  reducer: { 
+    AdminDashboardSlice: AdminDashboardSlice.reducer,
+    AllDevicesSlice: AllDevicesSlice.reducer,
+    AllDashboardSlice: AllDashboardSlice.reducer,
+    DeviceAtributesSlice: DeviceAtributesSlice.reducer,
+    DateGenerateSlice: DateGenerateSlice.reducer,
+    IdStateSlice: IdStateSlice.reducer,
+    OneDeviceSlice: OneDeviceSlice.reducer,
+    NandinaDeviceSlice: NandinaDeviceSlice.reducer,
+    ManyDevicesSlice: ManyDevicesSlice.reducer,
+  },
+});
 
-export default store
+export default store;
