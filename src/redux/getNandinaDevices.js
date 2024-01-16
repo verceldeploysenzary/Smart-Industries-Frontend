@@ -36,8 +36,8 @@ export const fetchDevicesNandina = createAsyncThunk(
             "X-Authorization": `Bearer ${refresh_token}`,
           };
 
-          const startDateTimestamp = 1696409563207; 
-          const endDateTimestamp = 1705419763000; 
+          const startDateTimestamp = 1449700436177; 
+          const endDateTimestamp = 1749706436177; 
 
           if (
             typeof startDateTimestamp !== "number" ||

@@ -1,30 +1,36 @@
 import React from "react";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer } from "react-leaflet";
-import L from "leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
-function CustomMap() {
-  const center = [-34.61315, -58.37723];
+function CustomMap({ param1, param2 }) {
+  const center = [Number(param1), Number(param2)];
 
-  const defaultMarkerIcon = new L.Icon({
-    iconSize: [50, 50],
-    popupAnchor: [3, -46],
-  });
+  const ver = () => {
+    console.log(Number(param1), Number(param2));
+  };
+
 
   return (
     <div>
+      <button onClick={() => ver()}>VER</button>
+
       <div>
         <MapContainer
           className="map-container"
           center={center}
-          zoom={12}
+          zoom={18}
           scrollWheelZoom={true}
-          style={{ width: "90vw", height: "90vh" }}
+          style={{ width: "40%", height: "50vh" }}
         >
           <TileLayer
             url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
           />
+          <Marker 
+          position={center}
+          >
+            <Popup>{center}</Popup>
+          </Marker>
         </MapContainer>
       </div>
     </div>
