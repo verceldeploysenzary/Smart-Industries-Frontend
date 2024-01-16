@@ -10,29 +10,49 @@ const Component = () => {
   const data = useSelector((state) => state.NandinaDeviceSlice.data);
 
   const [GuardNandinaDoorObject, setGuardNandinaDoorObject] = useState(null);
+  const [NandinaPresence, setNandinaPresence] = useState(null);
 
   useEffect(() => {
     dispatch(fetchDevicesNandina());
   }, [dispatch]);
 
+
+
   const Cargar = () => {
-    
     const GuardNandinaDoor = "60038b90-0460-11ed-8186-71e7353bf3bc";
-    const foundObject = data.find((item) => item.id === GuardNandinaDoor);
-    if (foundObject) {
-      console.log(foundObject);
-      setGuardNandinaDoorObject(foundObject);
+    const foundObjectGuardNandinaDoor = data.find(
+      (item) => item.id === GuardNandinaDoor
+    );
+    if (foundObjectGuardNandinaDoor) {
+      console.log(foundObjectGuardNandinaDoor);
+      setGuardNandinaDoorObject(foundObjectGuardNandinaDoor);
     } else {
       console.log(`Object with id ${GuardNandinaDoor} not found.`);
     }
+
+    const PresenceNandina = "20b3a900-06f6-11ed-8186-71e7353bf3bc";
+    const foundNandinaPresence = data.find(
+      (item) => item.id === PresenceNandina
+    );
+    if (foundNandinaPresence) {
+      console.log(foundNandinaPresence);
+      setNandinaPresence(foundNandinaPresence);
+    } else {
+      console.log(`Object with id ${PresenceNandina} not found.`);
+    }
   };
-   const ver2 =()=>{
+
+  useEffect(() => {
+    Cargar();
+  }, [data]);
+  
+  const ver2 = () => {
     console.log(data);
-   }
+  };
   return (
     <div className="text-black flex flex-col">
       <button onClick={() => Cargar()}>Cargar</button>
-      <button onClick={()=>ver2()}>VER2</button>
+      <button onClick={() => ver2()}>VER2</button>
 
       <div className="flex justify-center items-center">
         <div className="text-black flex flex-col">
@@ -42,12 +62,16 @@ const Component = () => {
               <div key={item.name} className="mb-2">
                 <h1>{item.label} + {item.name} + {item.id.id}</h1>
               </div>
-            ))} */}
+            ))}  */}
         </div>
       </div>
 
-      {GuardNandinaDoorObject && <Widget1 GuardNandinaDoorObject={GuardNandinaDoorObject} />}
-      <Widget2 />
+      <div className="flex flex-row">
+        {GuardNandinaDoorObject && (
+          <Widget1 GuardNandinaDoorObject={GuardNandinaDoorObject} />
+        )}
+        {NandinaPresence && <Widget2 NandinaPresence={NandinaPresence} />}
+      </div>
     </div>
   );
 };

@@ -1,8 +1,4 @@
-import { fetchDevicesNandina } from "@/redux/getNandinaDevices";
-import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { fetchOneDevice } from "@/redux/fetchOneDevice";
-import { fetchManyDevices } from "@/redux/fetchManyDevices";
 
 const Widget1 = ({GuardNandinaDoorObject}) => {
 
@@ -19,21 +15,21 @@ const Widget1 = ({GuardNandinaDoorObject}) => {
         <h1 className="text-black mb-4">{obj?.label}</h1>
 
         {state === "true" ? (
-          <>
-            <h1 className="text-green-500 text-lg mb-2">OPEN</h1>
+          <div>
+            <h1 className="text-green-500 text-lg mb-2">Front door is CLOSED</h1>
             <img
-              className="w-54"
-              src="https://www.seekpng.com/png/full/82-822042_opened-black-door-png-open-door-balck-png.png"
-              alt="Open Door"
-            />
-          </>
-        ) : (
-          <>
-            <h1 className="text-red-500 text-lg mb-2">CLOSED</h1>
-            <img
-              className="w-54"
+              className="w-34"
               src="https://w7.pngwing.com/pngs/792/472/png-transparent-black-door-doors-and-windows-portal-security-door-thumbnail.png"
               alt="Closed Door"
+            />
+          </div>
+        ) : (
+          <>
+            <h1 className="text-red-500 text-lg mb-2">Front door is OPEN</h1>
+            <img
+              className="w-34"
+              src="https://www.seekpng.com/png/full/82-822042_opened-black-door-png-open-door-balck-png.png"
+              alt="Open Door"
             />
           </>
         )}
