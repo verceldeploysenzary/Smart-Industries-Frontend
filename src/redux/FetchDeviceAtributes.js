@@ -13,7 +13,6 @@ export const fetchDeviceAtributes = createAsyncThunk(
         "Content-Type": "application/json",
         "X-Authorization": `Bearer ${refresh_token}`,
       };
-
       if (
         typeof startDateTimestamp !== "number" ||
         typeof endDateTimestamp !== "number"
@@ -23,7 +22,6 @@ export const fetchDeviceAtributes = createAsyncThunk(
         );
         return;
       }
-
       const response = await axios.get(fullUrl, { headers });
       const keys = response.data;
       if (!keys.length) {
@@ -33,7 +31,6 @@ export const fetchDeviceAtributes = createAsyncThunk(
       const encodedKeys = keys.map(encodeURIComponent).join("%2C");
 
       const secondUrl = `https://iotlogiq.com:443/api/plugins/telemetry/DEVICE/${id}/values/timeseries?keys=${encodedKeys}&startTs=${startDateTimestamp}&endTs=${endDateTimestamp}`;
-
       try {
         const secondResponse = await axios.get(secondUrl, { headers });
         const arrageData = [];

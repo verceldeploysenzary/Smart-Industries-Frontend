@@ -6,6 +6,8 @@ import AllDevicesSlice from "./fetchAllDevices";
 import DateGenerateSlice from "./dateGenerate";
 import IdStateSlice from "./IdState";
 import OneDeviceSlice from "./fetchOneDevice";
+import NandinaDeviceSlice from "./getNandinaDevices";
+import ManyDevicesSlice from "./fetchManyDevices";
 
 const store = configureStore({
     reducer:{ 
@@ -15,7 +17,9 @@ const store = configureStore({
         DeviceAtributesSlice: DeviceAtributesSlice.reducer,
         DateGenerateSlice: DateGenerateSlice.reducer,
         IdStateSlice: IdStateSlice.reducer,
-        OneDeviceSlice: OneDeviceSlice.reducer
+        OneDeviceSlice: OneDeviceSlice.reducer,
+        NandinaDeviceSlice: NandinaDeviceSlice.reducer,
+        ManyDevicesSlice: ManyDevicesSlice.reducer,
     }
 })
 

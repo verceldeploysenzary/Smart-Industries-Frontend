@@ -18,6 +18,7 @@ const Component = () => {
       <Link href={`/devices`} as={`/devices`}>
         <button>devices</button>
       </Link>
+
       {data && data.length > 0 ? (
         <table className="w-9/12 mx-auto bg-white">
           <thead>
