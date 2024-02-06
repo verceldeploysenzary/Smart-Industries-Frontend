@@ -10,7 +10,7 @@ const PresenceWidget = () => {
 
   useEffect(() => {
     dispatch(fetchWidget3(PresenceDeviceId));
-  }, [dispatch]); // Added dispatch as a dependency
+  }, [dispatch]);
 
   const handleClick = () => {
     if (
@@ -22,7 +22,6 @@ const PresenceWidget = () => {
     }
   };
 
-  // Set default color to red if ocuppied is not true or not available
   const ocuppied =
     responseData && responseData.presence && responseData.presence.length > 0
       ? responseData.presence[0].value

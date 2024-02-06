@@ -1,6 +1,7 @@
 import Widget1 from "./widget1/Sensative-01C769";
 import AbeewayWidget from "./widget2/AbeewayWidget";
 import PresenceWidget from "./widget3/PresenceWidget";
+import WidgetAdvantgrid from "./widget4/widget4";
 
 const Component = () => {
   return (
@@ -9,6 +10,7 @@ const Component = () => {
         <PresenceWidget />
         <Widget1 />
       </div>
+      <WidgetAdvantgrid />
       <AbeewayWidget />
     </div>
   );

@@ -11,6 +11,7 @@ import ManyDevicesSlice from "./fetchManyDevices";
 import Widget1Slice from "./Widget1";
 import Widget2Slice from "./fetchWidget2";
 import Widget3Slice from "./fetchWidget3";
+import Widget4Slice from "./fetchWidget4";
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -33,6 +34,7 @@ const store = configureStore({
     Widget1Slice: Widget1Slice.reducer,
     Widget2Slice: Widget2Slice.reducer,
     Widget3Slice: Widget3Slice.reducer,
+    Widget4Slice: Widget4Slice.reducer,
   },
 });
 
