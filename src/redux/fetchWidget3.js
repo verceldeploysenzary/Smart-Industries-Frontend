@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Create an asynchronous thunk for fetching data
-export const fetchWidget1 = createAsyncThunk(
-  "data/fetchWidget1",
+export const fetchWidget3 = createAsyncThunk(
+  "data/fetchWidget3",
   async (id) => {
     try {
       const fullUrl = `
@@ -15,16 +15,15 @@ export const fetchWidget1 = createAsyncThunk(
         "X-Authorization": `Bearer ${refresh_token}`,
       };
       const response = await axios.get(fullUrl, { headers });
-      console.log(response.data);
-      return { responseData: response.data }; // Store only the response data
+      return { responseData: response.data };
     } catch (err) {
-      console.error("Error in fetchWidget1:", err);
+      console.error("Error in fetchWidget3:", err);
       throw err;
     }
   }
 );
 
-const Widget1Slice = createSlice({
+const Widget3Slice = createSlice({
   name: "data",
   initialState: {
     responseData: null,
@@ -34,20 +33,20 @@ const Widget1Slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchWidget1.pending, (state) => {
+      .addCase(fetchWidget3.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchWidget1.fulfilled, (state, action) => {
+      .addCase(fetchWidget3.fulfilled, (state, action) => {
         state.status = "succeeded";
         if (action.payload) {
           state.responseData = action.payload.responseData;
         }
       })
-      .addCase(fetchWidget1.rejected, (state, action) => {
+      .addCase(fetchWidget3.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
 
-export default Widget1Slice;
+export default Widget3Slice;

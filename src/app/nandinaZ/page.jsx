@@ -1,12 +1,14 @@
 import Widget1 from "./widget1/Sensative-01C769";
-import Widget2 from "../nandina/widget3/Abeeway";
+import AbeewayWidget from "./widget2/AbeewayWidget";
+import PresenceWidget from "./widget3/PresenceWidget";
 
 const Component = () => {
 
   return (
     <div className="text-black">
+        <PresenceWidget />
         <Widget1 />
-        <Widget2 />
+        <AbeewayWidget />
     </div> 
   );
 };

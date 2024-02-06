@@ -15,7 +15,6 @@ const Widget1 = () => {
     return (
     <div className="text-black flex flex-col">
          <div className="w-40 flex flex-col justify-center items-center shadow-lg p-4 rounded">
-
             {
                 data && data.doorState[0].value === "false" ? (
                     <div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import * as echarts from 'echarts';
 
-const EchartGauge = () => {
+const EchartGauge = ({ temp }) => {
   useEffect(() => {
     const dom = document.getElementById('chart-gauge-container');
 
@@ -73,14 +73,14 @@ const EchartGauge = () => {
             lineHeight: 40,
             borderRadius: 8,
             offsetCenter: [0, '-15%'],
-            fontSize: 60,
+            fontSize: 30,
             fontWeight: 'bolder',
             formatter: '{value} °C',
             color: 'inherit'
           },
           data: [
             {
-              value: 20
+              value: temp // Use the temp prop here
             }
           ]
         },
@@ -118,34 +118,14 @@ const EchartGauge = () => {
           },
           data: [
             {
-              value: 20
+              value: temp // Use the temp prop here
             }
           ]
         }
       ]
     };
 
-    setInterval(() => {
-      const random = +(Math.random() * 60).toFixed(2);
-      myChart.setOption({
-        series: [
-          {
-            data: [
-              {
-                value: random
-              }
-            ]
-          },
-          {
-            data: [
-              {
-                value: random
-              }
-            ]
-          }
-        ]
-      });
-    }, 2000);
+    // Remove the setInterval for updating the chart with random values
 
     if (option && typeof option === 'object') {
       myChart.setOption(option);
@@ -158,7 +138,7 @@ const EchartGauge = () => {
       myChart.dispose();
       window.removeEventListener('resize', myChart.resize);
     };
-  }, []);
+  }, [temp]); // Add temp as a dependency to useEffect
 
   return <div id="chart-gauge-container" style={{ width: '100%', height: '400px' }} />;
 };

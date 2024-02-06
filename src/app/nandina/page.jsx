@@ -52,8 +52,6 @@ const Component = () => {
     } 
   };
 
-  //aca termina LoadInfo
-
   useEffect(() => {
     LoadInfo();
   }, [data]);
@@ -82,9 +80,9 @@ const Component = () => {
               {/* {GuardNandinaDoorObject && (
                 <Widget1 GuardNandinaDoorObject={GuardNandinaDoorObject} />
               )} */}
-              {NandinaPresence && (
+              {/* {NandinaPresence && (
                 <Widget2 NandinaPresence={NandinaPresence} />
-              )}
+              )} */}
               {NandinaAbeeway && (
                 <WidgetAbeeway NandinaAbeeway={NandinaAbeeway} />
 
@@ -93,12 +91,6 @@ const Component = () => {
             {NandinaAdvantGrid && (
                 <WidgetAdvantgrid NandinaAdvantGrid={NandinaAdvantGrid} />
               )}
-            {/* <div className="flex flex-col max-w-full mb-10">
-              
-               {NandinaAbeeway && (
-                <TempGaugeAbeeway NandinaAbeeway={NandinaAbeeway} />
-              )} 
-            </div> */}
           </>
         ) : (
           <h1>Loading...</h1>

@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Create an asynchronous thunk for fetching data
-export const fetchWidget1 = createAsyncThunk(
-  "data/fetchWidget1",
+export const fetchAbeewayWidget = createAsyncThunk(
+  "data/fetchaEntityGroup",
   async (id) => {
     try {
       const fullUrl = `
@@ -16,9 +16,9 @@ export const fetchWidget1 = createAsyncThunk(
       };
       const response = await axios.get(fullUrl, { headers });
       console.log(response.data);
-      return { responseData: response.data }; // Store only the response data
+      return { responseData: response.data };
     } catch (err) {
-      console.error("Error in fetchWidget1:", err);
+      console.error("Error in fetchAbeewayWidget:", err);
       throw err;
     }
   }
@@ -34,16 +34,16 @@ const Widget1Slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchWidget1.pending, (state) => {
+      .addCase(fetchAbeewayWidget.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchWidget1.fulfilled, (state, action) => {
+      .addCase(fetchAbeewayWidget.fulfilled, (state, action) => {
         state.status = "succeeded";
         if (action.payload) {
           state.responseData = action.payload.responseData;
         }
       })
-      .addCase(fetchWidget1.rejected, (state, action) => {
+      .addCase(fetchAbeewayWidget.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

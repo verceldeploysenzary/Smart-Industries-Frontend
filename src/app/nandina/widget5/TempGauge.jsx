@@ -18,9 +18,7 @@ const TempGaugeAbeeway = ({ NandinaAbeeway }) => {
   }, {});
    
   return (
-    <div className="text-black w-1/2 h-1/2 bg-slate-500">
-     {/* <EcharGaugeAbeeway lastTemperatureProseced={lastTemperaturesProseced.value[0]} />  */}
-      
+    <div className="text-black w-1/2 h-1/2 bg-slate-500">      
    <EchartGauge /> 
  </div>
   );
