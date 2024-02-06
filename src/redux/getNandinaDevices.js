@@ -59,41 +59,6 @@ export const fetchDevicesNandina = createAsyncThunk(
             const encodedKeys = keys.map(encodeURIComponent).join("%2C");
 
             const secondUrl = `https://iotlogiq.com:443/api/plugins/telemetry/DEVICE/${id}/values/timeseries?keys=${encodedKeys}&startTs=${startDateTimestamp}&endTs=${endDateTimestamp}`;
-           
-            /* const arrageData = [];
-            const properties = [];
-            let propertyNamesSet = new Set();
-
-            let processedPropertiesCount = 0;
-            for (const property in secondResponse.data) {
-              if (
-                Object.prototype.hasOwnProperty.call(
-                  secondResponse.data,
-                  property
-                )
-              ) {
-                properties[property] = [];
-                secondResponse.data[property].forEach((obj) => {
-                  if ("ts" in obj) {
-                    if (!arrageData[obj.ts]) {
-                      arrageData[obj.ts] = [];
-                      propertyNamesSet.add(property);
-                    }
-                    arrageData[obj.ts].push({ [property]: obj.value });
-                    properties[property] = [{ [property]: obj.value }];
-                  }
-                });
-            
-                // Increment the count and break the loop if reached 5 properties
-                processedPropertiesCount++;
-                if (processedPropertiesCount >= 1) {
-                  break;
-                }
-              }
-            } */
-
-              // arrageData
-
               const secondResponse = await axios.get(secondUrl, { headers });
 
               let unArrageDatas = {};
@@ -112,7 +77,8 @@ export const fetchDevicesNandina = createAsyncThunk(
                 }
               }
             let unArrageData = secondResponse.data;
-            return { id, unArrageData, unArrageDatas, allData };
+            console.log();
+            return { id, unArrageData };
           } catch (secondErr) {
             console.error("Error in second URL call:", secondErr);
             throw secondErr;

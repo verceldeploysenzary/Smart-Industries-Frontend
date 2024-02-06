@@ -8,6 +8,7 @@ import IdStateSlice from "./IdState";
 import OneDeviceSlice from "./fetchOneDevice";
 import NandinaDeviceSlice from "./getNandinaDevices";
 import ManyDevicesSlice from "./fetchManyDevices";
+import Widget1Slice from "./Widget1";
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -27,6 +28,7 @@ const store = configureStore({
     OneDeviceSlice: OneDeviceSlice.reducer,
     NandinaDeviceSlice: NandinaDeviceSlice.reducer,
     ManyDevicesSlice: ManyDevicesSlice.reducer,
+    Widget1Slice: Widget1Slice.reducer
   },
 });
 

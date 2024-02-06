@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 const Widget1 = ({GuardNandinaDoorObject}) => {
-
   const foundObject = GuardNandinaDoorObject;
   const state = foundObject?.unArrageData?.doorState[0]?.value; 
-
   const [obj, setObj] = useState(foundObject.allData.find((item) => item.id.id === GuardNandinaDoorObject.id));
 
   return (
     <div className="text-black flex flex-col">
-
-
       <div className="w-40 flex flex-col justify-center items-center shadow-lg p-4 rounded">
         <h1 className="text-black mb-4">{obj?.label}</h1>
 

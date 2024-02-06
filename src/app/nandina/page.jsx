@@ -3,14 +3,13 @@ import { fetchDevicesNandina } from "@/redux/getNandinaDevices";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import Widget1 from "./widget1/Sensative-01C769";
-import Widget2 from "./widget2/Sensative-01B80C";
 import WidgetAbeeway from "./widget3/Abeeway";
 import WidgetAdvantgrid from "./widget4/Advantgrid";
 import NavBar from "@/components/NavBar/NavBar";
 import TempGaugeAbeeway from "./widget5/tempGauge";
 
 const Component = () => {
-  const dispatch = useDispatch();
+  /* const dispatch = useDispatch();
   const data = useSelector((state) => state.NandinaDeviceSlice.data);
 
   const [GuardNandinaDoorObject, setGuardNandinaDoorObject] = useState(null);
@@ -62,7 +61,7 @@ const Component = () => {
    const ver =()=>{
     console.log(data);
    }
-
+ */
    return (
     <div className="text-black flex flex-col">
       <NavBar />
@@ -80,9 +79,9 @@ const Component = () => {
             </div>
 
             <div className="flex flex-row">
-              {GuardNandinaDoorObject && (
+              {/* {GuardNandinaDoorObject && (
                 <Widget1 GuardNandinaDoorObject={GuardNandinaDoorObject} />
-              )}
+              )} */}
               {NandinaPresence && (
                 <Widget2 NandinaPresence={NandinaPresence} />
               )}
@@ -91,11 +90,11 @@ const Component = () => {
 
               )}
             </div>
-
-            {/* <div className="flex flex-col max-w-full mb-10">
-              {NandinaAdvantGrid && (
+            {NandinaAdvantGrid && (
                 <WidgetAdvantgrid NandinaAdvantGrid={NandinaAdvantGrid} />
               )}
+            {/* <div className="flex flex-col max-w-full mb-10">
+              
                {NandinaAbeeway && (
                 <TempGaugeAbeeway NandinaAbeeway={NandinaAbeeway} />
               )} 
