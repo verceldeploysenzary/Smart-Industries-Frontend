@@ -1,7 +1,8 @@
 import { useState } from "react";
-import EchartsStackLine from "@/components/Echarts/EchartsStackLine";
+import EcharGaugeAbeeway from "@/components/Echarts/EcharGaugeAbeeway";
+import EchartGauge from "@/components/Echarts/EchartGauge";
 
-const WidgetAbeeway = ({ NandinaAbeeway }) => {
+const TempGaugeAbeeway = ({ NandinaAbeeway }) => {
   const foundObject = NandinaAbeeway;
   const [obj, setObj] = useState(
     foundObject?.allData?.find((item) => item.id.id === NandinaAbeeway.id)
@@ -15,14 +16,14 @@ const WidgetAbeeway = ({ NandinaAbeeway }) => {
     acc[propName] = lastTemperatures.map((temp) => temp[propName]);
     return acc;
   }, {});
-
+   
   return (
-    <div className="text-black w-1/2">
-      <div>      
-        <EchartsStackLine lastTemperaturesProseced={lastTemperaturesProseced} />
-      </div>
-    </div>
+    <div className="text-black w-1/2 h-1/2 bg-slate-500">
+     {/* <EcharGaugeAbeeway lastTemperatureProseced={lastTemperaturesProseced.value[0]} />  */}
+      
+   <EchartGauge /> 
+ </div>
   );
 };
 
-export default WidgetAbeeway;
+export default TempGaugeAbeeway;

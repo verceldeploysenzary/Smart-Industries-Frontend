@@ -2,13 +2,16 @@ import React, { useEffect } from 'react';
 import * as echarts from 'echarts';
 
 const EchartsStackLine = ({ lastTemperaturesProseced }) => {
-
   useEffect(() => {
     const dom = document.getElementById('chart-gauge-container');
+
     if (!dom) {
       console.error('Invalid DOM element');
       return;
     }
+
+    // Dispose of the existing ECharts instance if it exists
+    echarts.dispose(dom);
 
     const myChart = echarts.init(dom, null, {
       renderer: 'canvas',
@@ -36,7 +39,7 @@ const EchartsStackLine = ({ lastTemperaturesProseced }) => {
         }
       },
       legend: {
-        data: ['Temperature']
+        data: ['temperature']
       },
       grid: {
         left: '3%',
@@ -61,7 +64,7 @@ const EchartsStackLine = ({ lastTemperaturesProseced }) => {
       },
       series: [
         {
-          name: 'Temperature',
+          name: 'temperature',
           type: 'line',
           stack: 'Total',
           data: lastTemperaturesProseced.value.map((val, index) => [dateObjects[index], val])

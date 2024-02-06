@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import Widget1 from "./widget1/Sensative-01C769";
 import Widget2 from "./widget2/Sensative-01B80C";
-import Abeeway from "./widget3/Abeeway";
 import WidgetAbeeway from "./widget3/Abeeway";
 import WidgetAdvantgrid from "./widget4/Advantgrid";
 import NavBar from "@/components/NavBar/NavBar";
+import TempGaugeAbeeway from "./widget5/tempGauge";
 
 const Component = () => {
   const dispatch = useDispatch();
@@ -20,9 +20,9 @@ const Component = () => {
 
   useEffect(() => {
     dispatch(fetchDevicesNandina());
-  }, [dispatch]);
+  }, []);
 
-  const LoadInfo = () => {
+ const LoadInfo = () => {
     //1
     const GuardNandinaDoor = "60038b90-0460-11ed-8186-71e7353bf3bc";
     const foundObjectGuardNandinaDoor = data.find(
@@ -59,31 +59,52 @@ const Component = () => {
     LoadInfo();
   }, [data]);
 
-  return (
-    <div className="text-black flex flex-col">
-      <NavBar/>
-      <div className="flex justify-center items-center">
-        <div className="text-black flex flex-col">
-         {/* {data &&
-            data.length > 0 &&
-            data[0]?.allData.map((item) => (
-              <div key={item.name} className="mb-2">
-                <h1>{item.label} + {item.name} + {item.id.id}</h1>
-              </div>
-            ))}  */}
-        </div>
-      </div>
+   const ver =()=>{
+    console.log(data);
+   }
 
-      <div className="flex flex-row">
-        {GuardNandinaDoorObject && (
-          <Widget1 GuardNandinaDoorObject={GuardNandinaDoorObject} />
+   return (
+    <div className="text-black flex flex-col">
+      <NavBar />
+      <button className="text-black" onClick={() => ver()}>
+        VER
+      </button>
+
+      <div className="text-black flex flex-col px-40">
+        {data && data.length > 0 ? (
+          <>
+            <div className="flex justify-center items-center">
+              <div className="text-black flex flex-col">
+                {/* Render your content here */}
+              </div>
+            </div>
+
+            <div className="flex flex-row">
+              {GuardNandinaDoorObject && (
+                <Widget1 GuardNandinaDoorObject={GuardNandinaDoorObject} />
+              )}
+              {NandinaPresence && (
+                <Widget2 NandinaPresence={NandinaPresence} />
+              )}
+              {NandinaAbeeway && (
+                <WidgetAbeeway NandinaAbeeway={NandinaAbeeway} />
+
+              )}
+            </div>
+
+            {/* <div className="flex flex-col max-w-full mb-10">
+              {NandinaAdvantGrid && (
+                <WidgetAdvantgrid NandinaAdvantGrid={NandinaAdvantGrid} />
+              )}
+               {NandinaAbeeway && (
+                <TempGaugeAbeeway NandinaAbeeway={NandinaAbeeway} />
+              )} 
+            </div> */}
+          </>
+        ) : (
+          <h1>Loading...</h1>
         )}
-        {NandinaPresence && <Widget2 NandinaPresence={NandinaPresence} />}
-        {NandinaAbeeway && <WidgetAbeeway NandinaAbeeway={NandinaAbeeway} />}
       </div>
-      <div>
-        {NandinaAdvantGrid && <WidgetAdvantgrid NandinaAdvantGrid={NandinaAdvantGrid} />}
-        </div>
     </div>
   );
 };

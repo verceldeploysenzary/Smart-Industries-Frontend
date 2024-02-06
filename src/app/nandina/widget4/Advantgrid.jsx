@@ -1,19 +1,15 @@
-import CustomMap from "./Leaflet";
+import dynamic from 'next/dynamic';
+
+
+const CustomMap = dynamic(() => import('./Leaflet'), { ssr: false });
 
 const WidgetAdvantgrid = ({ NandinaAdvantGrid }) => {
   const foundObject = NandinaAdvantGrid;
-  /* const [obj, setObj] = useState(
-    foundObject?.allData?.find((item) => item.id.id === NandinaAbeeway.id)
-  ); */
 
 
-  const ver = () => {
-    console.log(NandinaAdvantGrid.unArrageData.LrrLAT[0].value);
-    console.log(NandinaAdvantGrid.unArrageData.LrrLON[0].value);
-  };
   return (
-    <div>
-      <h1>WidgetAdvantgrid</h1>
+    <div className="w-full">
+      <h1>Advantgrid</h1>
        <CustomMap param1={NandinaAdvantGrid.unArrageData.LrrLAT[0].value} param2={NandinaAdvantGrid.unArrageData.LrrLON[0].value}/> 
     </div>
   );

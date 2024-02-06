@@ -36,8 +36,8 @@ export const fetchDevicesNandina = createAsyncThunk(
             "X-Authorization": `Bearer ${refresh_token}`,
           };
 
-          const startDateTimestamp = 1449700436177; 
-          const endDateTimestamp = 1749706436177; 
+          const startDateTimestamp = 1649700436177;
+          const endDateTimestamp = 1749706436177;
 
           if (
             typeof startDateTimestamp !== "number" ||
@@ -53,19 +53,18 @@ export const fetchDevicesNandina = createAsyncThunk(
             const response = await axios.get(fullUrl, { headers });
             const keys = response.data;
             if (!keys.length) {
-              console.warn(
-                "No keys found! Unable to fetch device attributes."
-              );
+              console.warn("No keys found! Unable to fetch device attributes.");
               return "";
             }
             const encodedKeys = keys.map(encodeURIComponent).join("%2C");
 
             const secondUrl = `https://iotlogiq.com:443/api/plugins/telemetry/DEVICE/${id}/values/timeseries?keys=${encodedKeys}&startTs=${startDateTimestamp}&endTs=${endDateTimestamp}`;
-            const secondResponse = await axios.get(secondUrl, { headers });
-            const arrageData = [];
+           
+            /* const arrageData = [];
             const properties = [];
             let propertyNamesSet = new Set();
 
+            let processedPropertiesCount = 0;
             for (const property in secondResponse.data) {
               if (
                 Object.prototype.hasOwnProperty.call(
@@ -84,17 +83,42 @@ export const fetchDevicesNandina = createAsyncThunk(
                     properties[property] = [{ [property]: obj.value }];
                   }
                 });
+            
+                // Increment the count and break the loop if reached 5 properties
+                processedPropertiesCount++;
+                if (processedPropertiesCount >= 1) {
+                  break;
+                }
               }
-            }
+            } */
+
+              // arrageData
+
+              const secondResponse = await axios.get(secondUrl, { headers });
+
+              let unArrageDatas = {};
+              
+              if (Object.keys(secondResponse.data).length > 0) {
+                for (const property in secondResponse.data) {
+                  if (
+                    Object.prototype.hasOwnProperty.call(
+                      secondResponse.data,
+                      property
+                    )
+                  ) {
+                    const filteredArray = secondResponse.data[property].slice(0, 25);
+                    unArrageDatas[property] = filteredArray;
+                  }
+                }
+              }
             let unArrageData = secondResponse.data;
-            return { id, arrageData, unArrageData,allData };
+            return { id, unArrageData, unArrageDatas, allData };
           } catch (secondErr) {
             console.error("Error in second URL call:", secondErr);
             throw secondErr;
           }
         })
       );
-
       return processedData;
     } catch (err) {
       console.error(err);
