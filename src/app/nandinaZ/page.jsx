@@ -3,13 +3,14 @@ import AbeewayWidget from "./widget2/AbeewayWidget";
 import PresenceWidget from "./widget3/PresenceWidget";
 
 const Component = () => {
-
   return (
-    <div className="text-black">
+    <div className="text-black flex flex-col">
+      <div className="text-black flex flex-row justify-around">
         <PresenceWidget />
         <Widget1 />
-        <AbeewayWidget />
-    </div> 
+      </div>
+      <AbeewayWidget />
+    </div>
   );
 };
 

@@ -29,7 +29,7 @@ const PresenceWidget = () => {
       : false;
 
   return (
-    <div className="text-black" onClick={handleClick}>
+    <div className="text-black shadow-lg p-4 rounded flex flex-col justify-center items-center" onClick={handleClick} >
       <h1>Desk is {ocuppied ? "free" : "ocuppied"}</h1>
       <svg
         width="80"
